@@ -1,0 +1,15 @@
+<map id="default_parser.h" name="default_parser.h">
+<area shape="rect" id="node2" href="$tree_8h.html" title="tree.h" alt="" coords="211,393,266,420"/>
+<area shape="rect" id="node9" href="$bison_8h.html" title="bison.h" alt="" coords="148,80,212,107"/>
+<area shape="rect" id="node10" href="$schema__builder_8h.html" title="schema_builder.h" alt="" coords="237,80,361,107"/>
+<area shape="rect" id="node46" href="$storage__manager_8h.html" title="../core/include/storage\l_manager.h" alt="" coords="333,155,483,196"/>
+<area shape="rect" id="node48" href="$parser_8h.html" title="../core/include/parser.h" alt="" coords="444,80,599,107"/>
+<area shape="rect" id="node11" href="$metadata_8h.html" title="../core/include/metadata.h" alt="" coords="356,319,529,345"/>
+<area shape="rect" id="node47" href="$query__data__manager_8h.html" title="query_data_manager.h" alt="" coords="371,244,525,271"/>
+<area shape="rect" id="node14" href="$rtree_8h.html" title="rtree.h" alt="" coords="444,393,503,420"/>
+<area shape="rect" id="node19" href="$savime_8h.html" title="savime.h" alt="" coords="3405,393,3480,420"/>
+<area shape="rect" id="node22" href="$dynamic__bitset_8h.html" title="dynamic_bitset.h" alt="" coords="1757,393,1878,420"/>
+<area shape="rect" id="node20" href="$system__logger_8h.html" title="system_logger.h" alt="" coords="3675,475,3794,502"/>
+<area shape="rect" id="node21" href="$config__manager_8h.html" title="include/config_manager.h" alt="" coords="3480,475,3651,502"/>
+<area shape="rect" id="node39" href="$util_8h.html" title="util.h" alt="" coords="789,475,840,502"/>
+</map>

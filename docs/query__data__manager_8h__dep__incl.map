@@ -1,0 +1,33 @@
+<map id="query_data_manager.h" name="query_data_manager.h">
+<area shape="rect" id="node2" href="$storage__manager_8h.html" title="storage_manager.h" alt="" coords="1111,87,1245,114"/>
+<area shape="rect" id="node3" href="$parser_8h.html" title="parser.h" alt="" coords="817,177,886,203"/>
+<area shape="rect" id="node18" href="$ddl__operators_8h.html" title="ddl_operators.h" alt="" coords="859,333,969,360"/>
+<area shape="rect" id="node19" href="$ddl__operators_8cpp.html" title="ddl_operators.cpp" alt="" coords="1445,408,1570,435"/>
+<area shape="rect" id="node20" href="$dml__operators_8h.html" title="dml_operators.h" alt="" coords="1069,333,1183,360"/>
+<area shape="rect" id="node21" href="$viz_8h.html" title="viz.h" alt="" coords="994,333,1045,360"/>
+<area shape="rect" id="node26" href="$schema__builder_8h.html" title="schema_builder.h" alt="" coords="1369,177,1493,203"/>
+<area shape="rect" id="node29" href="$default__template_8h.html" title="default_template.h" alt="" coords="1728,259,1857,285"/>
+<area shape="rect" id="node30" href="$default__query__data__manager_8h.html" title="default_query_data\l_manager.h" alt="" coords="1939,80,2071,121"/>
+<area shape="rect" id="node32" href="$query__data__manager_8cpp.html" title="query_data_manager.cpp" alt="" coords="2095,87,2263,114"/>
+<area shape="rect" id="node13" href="$engine_8h.html" title="engine.h" alt="" coords="816,259,887,285"/>
+<area shape="rect" id="node14" href="$default__engine_8h.html" title="default_engine.h" alt="" coords="717,333,834,360"/>
+<area shape="rect" id="node22" href="$default__parser_8h.html" title="default_parser.h" alt="" coords="1318,259,1433,285"/>
+<area shape="rect" id="node27" href="$default__storage__manager_8h.html" title="default_storage_manager.h" alt="" coords="1577,177,1755,203"/>
+<area shape="rect" id="node4" href="$optimizer_8h.html" title="optimizer.h" alt="" coords="433,259,520,285"/>
+<area shape="rect" id="node7" href="$builder_8cpp.html" title="builder.cpp" alt="" coords="561,483,646,509"/>
+<area shape="rect" id="node15" href="$default__engine_8cpp.html" title="default_engine.cpp" alt="" coords="717,408,847,435"/>
+<area shape="rect" id="node25" href="$metadata_8cpp.html" title="metadata.cpp" alt="" coords="690,259,791,285"/>
+<area shape="rect" id="node5" href="$job__manager_8h.html" title="job_manager.h" alt="" coords="282,333,389,360"/>
+<area shape="rect" id="node6" href="$builder_8h.html" title="builder.h" alt="" coords="419,408,489,435"/>
+<area shape="rect" id="node9" href="$default__job__manager_8h.html" title="default_job_manager.h" alt="" coords="189,408,343,435"/>
+<area shape="rect" id="node11" href="$default__server__job_8h.html" title="default_server_job.h" alt="" coords="26,408,165,435"/>
+<area shape="rect" id="node8" href="$main_8cpp.html" title="main.cpp" alt="" coords="417,483,491,509"/>
+<area shape="rect" id="node10" href="$default__job__manager_8cpp.html" title="default_job_manager.cpp" alt="" coords="183,483,349,509"/>
+<area shape="rect" id="node12" href="$default__server__job_8cpp.html" title="default_server_job.cpp" alt="" coords="5,483,159,509"/>
+<area shape="rect" id="node16" href="$dml__operators_8cpp.html" title="dml_operators.cpp" alt="" coords="960,408,1089,435"/>
+<area shape="rect" id="node17" href="$viz_8cpp.html" title="viz.cpp" alt="" coords="871,408,935,435"/>
+<area shape="rect" id="node23" href="$default__parser_8cpp.html" title="default_parser.cpp" alt="" coords="1208,333,1337,360"/>
+<area shape="rect" id="node24" href="$schema__builder_8cpp.html" title="schema_builder.cpp" alt="" coords="1413,333,1551,360"/>
+<area shape="rect" id="node28" href="$default__storage__manager_8cpp.html" title="default_storage_manager.cpp" alt="" coords="1677,333,1871,360"/>
+<area shape="rect" id="node31" href="$default__query__data__manager_8cpp.html" title="default_query_data\l_manager.cpp" alt="" coords="1939,169,2071,211"/>
+</map>

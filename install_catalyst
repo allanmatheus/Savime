@@ -1,0 +1,26 @@
+#To download the source code 
+git clone https://gitlab.kitware.com/paraview/paraview.git
+cd paraview
+git submodule update --init
+
+#To update the code
+git pull
+git submodule update
+
+#Configure build. Don't forget to set the following parameters: PARAVIEW_USE_MPI=off, PARAVIEW_ENABLE_PYTHON=on and PARAVIEW_INSTALL_DEVELOPMENT_F=on.
+cd ../
+mkdir paraview_build
+cd paraview_build
+ccmake ../paraview
+
+#Make with 4 cores
+make -j 4
+sudo make install
+
+#To compile a standalon program with catalyst:
+#run bin/paraview-config --libs --python vtkPVPythonCatalyst vtkPVServerManagerRendering vtkUtilitiesPythonInitializer
+#run bin/paraview-config --include
+#Get the include and the libs path and compile against everything in the libs path.
+#g++ -std=c++11 -w FEAdaptor.cxx FEDataStructures.cxx FEDriver.cxx /usr/local/lib/paraview-5.4/*.so -I/usr/local/include/paraview-5.4 -Wl,-rpath,/usr/local/lib/paraview-5.4/ -L/usr/local/lib/paraview-5.4/ -o catalyst
+
+

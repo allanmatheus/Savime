@@ -1,0 +1,71 @@
+START TRANSACTION;
+
+CREATE TABLE domain (id serial, name varchar(100), domain_typeId int, parent int);
+
+CREATE TABLE topology (id int, incident_dimensionId int, incidentee_dimensionId int, incident_element_variableId int, time_stamp_dimension int, primary key(id));
+
+CREATE TABLE geometry (id int, element_id_dimensionId int, x_coord_variableId int, y_coord_variableId int,  z_coord_variableId int, time_stamp_dimension int, primary key(id));	
+
+CREATE TABLE element_data (id int, element_id_dimensionId int, time_stamp_dimension int, element_type int, primary key(id));	
+
+CREATE TABLE data_element (id serial, name varchar(100), type char, data_type int, schemaId int);
+
+CREATE TABLE schema ( id serial, domainId int);
+	
+CREATE TABLE hyperslab (id serial,domainId int);
+
+CREATE TABLE hyperslab_data_set(data_setId int, hyperslabId int, primary key (data_setId, hyperslabId));
+
+CREATE TABLE data_set (id serial, lower_index bigint, upper_index bigint);
+
+CREATE TABLE dimension_specs (id serial, hyperslabId int, dimensionId int, lower_bound varchar(100), upper_bound varchar(100), dim_length bigint, offset bigint, spacing varchar(100), dimension_typeId int, values_data_setId int);
+
+CREATE TABLE relationship (data_elementId1 int, data_elementId2 int, domain_relationship bool, primary key(data_elementId1, data_elementId2));
+
+CREATE TABLE data_type (id serial, name varchar(40));
+
+CREATE TABLE element_type (id serial, name varchar(40));
+
+CREATE TABLE dimension_type (id serial, name varchar(40));
+
+CREATE TABLE domain_type (id serial,name varchar(40));
+
+ALTER TABLE domain ADD FOREIGN KEY (domain_typeId) REFERENCES domain_type(id);
+ALTER TABLE domain ADD FOREIGN KEY (parent) REFERENCES domain(id);
+
+ALTER TABLE topology ADD FOREIGN KEY (id) REFERENCES domain(id);
+ALTER TABLE topology ADD FOREIGN KEY (incident_dimensionId) REFERENCES data_element(id);
+ALTER TABLE topology ADD FOREIGN KEY (incidentee_dimensionId) REFERENCES data_element(id);
+ALTER TABLE topology ADD FOREIGN KEY (incident_element_variableId) REFERENCES data_element(id);
+
+ALTER TABLE geometry ADD FOREIGN KEY (id) REFERENCES domain(id);
+ALTER TABLE geometry ADD FOREIGN KEY (element_id_dimensionId) REFERENCES data_element(id);
+ALTER TABLE geometry ADD FOREIGN KEY (x_coord_variableId) REFERENCES data_element(id);
+ALTER TABLE geometry ADD FOREIGN KEY (y_coord_variableId) REFERENCES data_element(id);
+ALTER TABLE geometry ADD FOREIGN KEY (z_coord_variableId) REFERENCES data_element(id);
+ALTER TABLE geometry ADD FOREIGN KEY (time_stamp_dimension) REFERENCES data_element(id);
+
+ALTER TABLE element_data ADD FOREIGN KEY (id) REFERENCES domain(id);
+ALTER TABLE element_data ADD FOREIGN KEY (element_id_dimensionId) REFERENCES data_element(id);
+ALTER TABLE element_data ADD FOREIGN KEY (time_stamp_dimension) REFERENCES data_element(id);
+ALTER TABLE element_data ADD FOREIGN KEY (element_type) REFERENCES element_type(id);
+
+ALTER TABLE data_element ADD FOREIGN KEY (data_type) REFERENCES data_type(id);
+ALTER TABLE data_element ADD FOREIGN KEY (schemaId) REFERENCES schema(id);
+
+ALTER TABLE schema ADD FOREIGN KEY (domainId) REFERENCES domain(id);
+
+ALTER TABLE hyperslab ADD FOREIGN KEY (domainId) REFERENCES domain(id);
+
+ALTER TABLE hyperslab_data_set ADD FOREIGN KEY (data_setId ) REFERENCES data_set(id);
+ALTER TABLE hyperslab_data_set ADD FOREIGN KEY (hyperslabId) REFERENCES hyperslab(id);
+
+ALTER TABLE dimension_specs ADD FOREIGN KEY (hyperslabId) REFERENCES hyperslab(id);
+ALTER TABLE dimension_specs ADD FOREIGN KEY (dimension_typeId) REFERENCES dimension_type(id);
+ALTER TABLE dimension_specs ADD FOREIGN KEY (values_data_setId) REFERENCES data_set(id);
+ALTER TABLE dimension_specs ADD FOREIGN KEY (dimensionId) REFERENCES element_data(id);
+
+ALTER TABLE relationship ADD FOREIGN KEY (data_elementId1) REFERENCES data_element(id);
+ALTER TABLE relationship ADD FOREIGN KEY (data_elementId2) REFERENCES data_element(id);
+
+COMMIT;
