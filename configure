@@ -16618,7 +16618,7 @@ fi
 ac_config_headers="$ac_config_headers config.h"
 
 CXXFLAGS='-g -DTIME  -rdynamic -m64 -fpic -w -Wall -Wextra -fopenmp -std=gnu++0x'
-ac_config_files="$ac_config_files Makefile core/Makefile client/Makefile wrapper/Makefile rdmap/Makefile engine/Makefile"
+ac_config_files="$ac_config_files Makefile core/Makefile client/Makefile rdmap/Makefile engine/Makefile"
 
 # Check whether --enable-catalyst was given.
 if test "${enable_catalyst+set}" = set; then :
@@ -17765,7 +17765,6 @@ do
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "core/Makefile") CONFIG_FILES="$CONFIG_FILES core/Makefile" ;;
     "client/Makefile") CONFIG_FILES="$CONFIG_FILES client/Makefile" ;;
-    "wrapper/Makefile") CONFIG_FILES="$CONFIG_FILES wrapper/Makefile" ;;
     "rdmap/Makefile") CONFIG_FILES="$CONFIG_FILES rdmap/Makefile" ;;
     "engine/Makefile") CONFIG_FILES="$CONFIG_FILES engine/Makefile" ;;
 
@@ -19203,3 +19202,4 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
 $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
+
