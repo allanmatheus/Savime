@@ -88,7 +88,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = x86_64-pc-linux-gnu
-bin_PROGRAMS = savime_catalyst$(EXEEXT)
+#bin_PROGRAMS = savime_catalyst$(EXEEXT)
 subdir = engine
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -105,11 +105,11 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__savime_catalyst_SOURCES_DIST = catalyst.cpp
-am_savime_catalyst_OBJECTS =  \
-	savime_catalyst-catalyst.$(OBJEXT)
+#am_savime_catalyst_OBJECTS =  \
+#	savime_catalyst-catalyst.$(OBJEXT)
 savime_catalyst_OBJECTS = $(am_savime_catalyst_OBJECTS)
-savime_catalyst_DEPENDENCIES = ../rdmap/librdmap.a \
-	/usr/local/lib/paraview-5.4/*.so
+#savime_catalyst_DEPENDENCIES = ../rdmap/librdmap.a \
+#	/usr/local/lib/libvtk*
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
@@ -301,10 +301,10 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-savime_catalyst_SOURCES = catalyst.cpp
-savime_catalyst_CXXFLAGS = -I/usr/local/include/paraview-5.4
-savime_catalyst_LDFLAGS = -Wl,-rpath,/usr/local/lib/paraview-5.4/ -L/usr/local/lib/paraview-5.4/ 
-savime_catalyst_LDADD = -lpthread ../rdmap/librdmap.a -lrdmacm -libverbs /usr/local/lib/paraview-5.4/*.so  
+#savime_catalyst_SOURCES = catalyst.cpp
+#savime_catalyst_CXXFLAGS = -I/usr/local/include/paraview-5.4
+#savime_catalyst_LDFLAGS = -Wl,-rpath,/usr/local/lib/paraview-5.4/ -L/usr/local/lib/paraview-5.4/ 
+#savime_catalyst_LDADD = -lpthread ../rdmap/librdmap.a -lrdmacm -libverbs /usr/local/lib/libvtk* 
 all: all-am
 
 .SUFFIXES:

@@ -121,16 +121,110 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 	<h2><span class="headline">Introduction</span></h2>
 	
-	SAVIME (Simulation Analysis and Visualization In MEmory) is a DBMS-like system that stores data in the format of typed multidiomensional arrays. It is desgined help querying and vizualize 		numerical simulation data. However, it could be used as an analytical in-memeory array database management system. SAVIME is in a very incipient form, and supports only a handful of operations.
-	But it is already able to perform many tasks, even for large datasets.
+	SAVIME (Simulation Analysis and Visualization In MEmory) is a DBMS-like system that stores data in the format of typed multidiomensional arrays. It is desgined help querying and vizualize 		numerical simulation data. However, it can also be used as an analytical in-memeory array database management system. SAVIME is in a very incipient form, and supports only a handful of 		operations. But it is already able to perform many tasks, even for large datasets.
 
 	<h2><span class="headline">Compiling and Running</span></h2>
 
-	For more information about the different types of GitHub Pages sites, see "User, Organization, and Project Pages."
+	To install SAVIME, you need to clone the git repository and compile it in your environment.
 
-	<h2><span class="headline">Configuring</span></h2>
+	<br> <h3>Prerequesites</h3>
 
-	For more information about the different types of GitHub Pages sites, see "User, Organization, and Project Pages."
+	The following packages must be installed for successfully compiling and running SAVIME:
+
+	<code class="codebox">sudo apt install git
+			      sudo apt install bison
+			      sudo apt install flex
+			      sudo apt install autoconf
+			      sudo apt install libtool
+			      sudo apt install libboost-all-dev
+			      sudo apt install librdmacm-dev
+    	</code>	
+
+	<br> <h3>Compiling and running SAVIME</h3>
+	
+	Once you have all dependencies installed, clone the repository.
+
+	<br> <code class="codebox"> git clone https://github.com/hllustosa/Savime </code>	
+
+	<br> <br> Enter the respository and build SAVIME:
+
+	<br><code class="codebox"> cd Savime
+				   autoreconf -f -i
+				   ./configure
+				   make
+				   sudo make install 
+	</code>	
+
+	<br><br>Once it is done, you can run the SAVIME server by typing:
+
+	<br><code class="codebox"> savime
+	</code>	
+
+	<br><br>You can also call the savime client with your desired query by typing:
+	
+	<br><code class="codebox"> savimec 'your query;'
+	</code>
+		
+	<br><br>You can test savime by running these commands from savime build directory:
+	<br><code class="codebox"> cd test
+				   nohup savime & ./test_savime.sh
+	</code>
+
+	<br><br>You should see the outputs of various samples of queries in teste_savime.sh file.
+	
+	<br> <h3>Compiling and running SAVIME with catalyst support</h3>
+
+	To build and running SAVIME with catalyst support, it is first necessary to have built Paraview. To do so, first install these dependencies:
+
+	<br><code class="codebox"> sudo apt install cmake-curses-gui
+				   sudo apt-get install freeglut3-dev
+	</code>	
+
+	<br><br>Clone Paraview's repository and update the submodules:
+
+	<br><code class="codebox"> git clone https://gitlab.kitware.com/paraview/paraview.git
+				   cd paraview
+				   git submodule update --init --recursive
+				   git pull
+				   git submodule update
+	</code>	
+	
+	<br><br>Now, create a separated build directory and configure Paraview. While configuring, don't forget to set the following parameters: PARAVIEW_USE_MPI=off, PARAVIEW_ENABLE_PYTHON=on,  		 PARAVIEW_BUILD_QT=off and PARAVIEW_INSTALL_DEVELOPMENT_F=on. For more info, check the <a href="https://www.paraview.org/Wiki/ParaView:Build_And_Install">Paraview's Documentation</a>.
+	<br><code class="codebox"> mkdir paraview_build
+				   cd paraview_build
+				   ccmake ../paraview
+	</code>	
+	
+	<br><br> Compile Paraview:
+
+	<br><code class="codebox"> make -j 4
+				   sudo make install
+	</code>
+
+	<br><br>VTK library files for catalyst are installed in /usr/local/lib. You should add this to your PATH variable. To do this for a single session, run:
+
+	<code class="codebox"> export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
+	</code>
+	
+	<br><br>Or add /usr/local/lib to /etc/ld.so.conf to make the changes permanent.
+
+	<br><br> Once you finished this, you should compile SAVIME set configure parameter to enable catalyst. Like this:
+
+ 	<br><code class="codebox"> cd Savime
+				   autoreconf -f -i
+				   ./configure --enable-catalyst=yes
+				   make
+				   sudo make install 
+	</code>	
+
+	<br><br>Finally, you can test it by running these commands from savime build directory:
+
+	<br><code class="codebox"> cd test
+				   nohup savime -b ../etc/savime.boot & 
+				   ./test_savime_catalyst.sh
+	</code>	
+
+	After running it for a while you should see a bunch of VTU files in test/viz directory. They contain a visualization for a numerical simulation compatible with Paraview.
 
 	<h2><span class="headline">Operators</span></h2>
 
@@ -195,7 +289,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 	Group attribute and dimension values by dimensions and calculate aggregation functions.
 	<code class="codebox">AGGREGATE(tar, agg_func1, data_element1, new_attribute1, ..., agg_func_n, data_element_n, new_attribute_n, dimension1, dimension2, ..., dimension_n ); </code>
 
-	<br> Some special operator complete the set of possibilites currently avaiable in SAVIME. They are:
+	<br> Some special operator complete the set of possibilites currently available in SAVIME. They are:
 
 	<br> <h3>STORE</h3>
 	Maintains the result of a query into the system, thus making it available for futher analysis.

@@ -191,8 +191,8 @@ CTAGS = ctags
 CSCOPE = cscope
 DIST_SUBDIRS = $(SUBDIRS)
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in COPYING \
-	README ar-lib compile config.guess config.sub depcomp \
-	install-sh ltmain.sh missing
+	README ar-lib compile config.guess config.sub install-sh \
+	ltmain.sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -356,7 +356,7 @@ target_alias =
 top_build_prefix = 
 top_builddir = .
 top_srcdir = .
-SUBDIRS = core client wrapper rdmap engine
+SUBDIRS = core client rdmap engine
 dist_doc_DATA = README
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive

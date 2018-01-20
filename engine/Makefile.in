@@ -109,7 +109,7 @@ am__savime_catalyst_SOURCES_DIST = catalyst.cpp
 @CATALYST_TRUE@	savime_catalyst-catalyst.$(OBJEXT)
 savime_catalyst_OBJECTS = $(am_savime_catalyst_OBJECTS)
 @CATALYST_TRUE@savime_catalyst_DEPENDENCIES = ../rdmap/librdmap.a \
-@CATALYST_TRUE@	/usr/local/lib/paraview-5.4/*.so
+@CATALYST_TRUE@	/usr/local/lib/libvtk*
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -304,7 +304,7 @@ top_srcdir = @top_srcdir@
 @CATALYST_TRUE@savime_catalyst_SOURCES = catalyst.cpp
 @CATALYST_TRUE@savime_catalyst_CXXFLAGS = -I/usr/local/include/paraview-5.4
 @CATALYST_TRUE@savime_catalyst_LDFLAGS = -Wl,-rpath,/usr/local/lib/paraview-5.4/ -L/usr/local/lib/paraview-5.4/ 
-@CATALYST_TRUE@savime_catalyst_LDADD = -lpthread ../rdmap/librdmap.a -lrdmacm -libverbs /usr/local/lib/paraview-5.4/*.so  
+@CATALYST_TRUE@savime_catalyst_LDADD = -lpthread ../rdmap/librdmap.a -lrdmacm -libverbs /usr/local/lib/libvtk* 
 all: all-am
 
 .SUFFIXES:

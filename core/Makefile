@@ -119,26 +119,6 @@ am__savime_SOURCES_DIST = main.cpp metadata.cpp system_logger.cpp \
 	../engine/ddl_operators.cpp ../engine/dml_operators.cpp \
 	../engine/viz.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
-#am_savime_OBJECTS = savime-main.$(OBJEXT) \
-#	savime-metadata.$(OBJEXT) \
-#	savime-system_logger.$(OBJEXT) \
-#	savime-builder.$(OBJEXT) \
-#	savime-query_data_manager.$(OBJEXT) \
-#	../configuration/savime-default_config_manager.$(OBJEXT) \
-#	../connection/savime-default_connection_manager.$(OBJEXT) \
-#	../engine/savime-default_engine.$(OBJEXT) \
-#	../job/savime-default_job_manager.$(OBJEXT) \
-#	../job/savime-default_server_job.$(OBJEXT) \
-#	../metada/savime-default_metadata_manager.$(OBJEXT) \
-#	../optimizer/savime-default_optimizer.$(OBJEXT) \
-#	../parser/savime-default_parser.$(OBJEXT) \
-#	../query/savime-default_query_data_manager.$(OBJEXT) \
-#	../parser/savime-bison.$(OBJEXT) \
-#	../parser/savime-flex.$(OBJEXT) \
-#	../parser/savime-schema_builder.$(OBJEXT) \
-#	../storage/savime-default_storage_manager.$(OBJEXT) \
-#	../engine/savime-ddl_operators.$(OBJEXT) \
-#	../engine/savime-dml_operators.$(OBJEXT)
 am_savime_OBJECTS = savime-main.$(OBJEXT) \
 	savime-metadata.$(OBJEXT) \
 	savime-system_logger.$(OBJEXT) \
@@ -158,12 +138,32 @@ am_savime_OBJECTS = savime-main.$(OBJEXT) \
 	../parser/savime-schema_builder.$(OBJEXT) \
 	../storage/savime-default_storage_manager.$(OBJEXT) \
 	../engine/savime-ddl_operators.$(OBJEXT) \
-	../engine/savime-dml_operators.$(OBJEXT) \
-	../engine/savime-viz.$(OBJEXT)
+	../engine/savime-dml_operators.$(OBJEXT)
+#am_savime_OBJECTS = savime-main.$(OBJEXT) \
+#	savime-metadata.$(OBJEXT) \
+#	savime-system_logger.$(OBJEXT) \
+#	savime-builder.$(OBJEXT) \
+#	savime-query_data_manager.$(OBJEXT) \
+#	../configuration/savime-default_config_manager.$(OBJEXT) \
+#	../connection/savime-default_connection_manager.$(OBJEXT) \
+#	../engine/savime-default_engine.$(OBJEXT) \
+#	../job/savime-default_job_manager.$(OBJEXT) \
+#	../job/savime-default_server_job.$(OBJEXT) \
+#	../metada/savime-default_metadata_manager.$(OBJEXT) \
+#	../optimizer/savime-default_optimizer.$(OBJEXT) \
+#	../parser/savime-default_parser.$(OBJEXT) \
+#	../query/savime-default_query_data_manager.$(OBJEXT) \
+#	../parser/savime-bison.$(OBJEXT) \
+#	../parser/savime-flex.$(OBJEXT) \
+#	../parser/savime-schema_builder.$(OBJEXT) \
+#	../storage/savime-default_storage_manager.$(OBJEXT) \
+#	../engine/savime-ddl_operators.$(OBJEXT) \
+#	../engine/savime-dml_operators.$(OBJEXT) \
+#	../engine/savime-viz.$(OBJEXT)
 savime_OBJECTS = $(am_savime_OBJECTS)
-#savime_DEPENDENCIES = ../rdmap/librdmap.a
-savime_DEPENDENCIES = ../rdmap/librdmap.a \
-	/usr/local/lib/paraview-5.4/*.so
+savime_DEPENDENCIES = ../rdmap/librdmap.a
+#savime_DEPENDENCIES = ../rdmap/librdmap.a \
+#	/usr/local/lib/libvtk*
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
@@ -370,12 +370,12 @@ AM_CPPFLAGS = \
     -D__STDC_LIMIT_MACROS \
     -D__STDC_CONSTANT_MACROS
 
-#savime_SOURCES = main.cpp metadata.cpp system_logger.cpp builder.cpp query_data_manager.cpp ../configuration/default_config_manager.cpp ../connection/default_connection_manager.cpp ../engine/default_engine.cpp  ../job/default_job_manager.cpp ../job/default_server_job.cpp ../metada/default_metadata_manager.cpp ../optimizer/default_optimizer.cpp ../parser/default_parser.cpp ../query/default_query_data_manager.cpp ../parser/bison.cpp  ../parser/flex.cpp  ../parser/schema_builder.cpp ../storage/default_storage_manager.cpp ../engine/ddl_operators.cpp ../engine/dml_operators.cpp 
-savime_SOURCES = main.cpp metadata.cpp system_logger.cpp builder.cpp query_data_manager.cpp ../configuration/default_config_manager.cpp ../connection/default_connection_manager.cpp ../engine/default_engine.cpp  ../job/default_job_manager.cpp ../job/default_server_job.cpp ../metada/default_metadata_manager.cpp ../optimizer/default_optimizer.cpp ../parser/default_parser.cpp ../query/default_query_data_manager.cpp ../parser/bison.cpp  ../parser/flex.cpp  ../parser/schema_builder.cpp ../storage/default_storage_manager.cpp ../engine/ddl_operators.cpp ../engine/dml_operators.cpp ../engine/viz.cpp
-savime_CXXFLAGS = -I/usr/local/include/paraview-5.4 -DCATALYST
-savime_LDFLAGS = -Wl,-rpath,/usr/local/lib/paraview-5.4/ -L/usr/local/lib/paraview-5.4/ -I/usr/local/include/paraview-5.4
-#savime_LDADD = -lpthread ../rdmap/librdmap.a -lrdmacm -libverbs
-savime_LDADD = -lpthread ../rdmap/librdmap.a -lrdmacm -libverbs /usr/local/lib/paraview-5.4/*.so 
+savime_SOURCES = main.cpp metadata.cpp system_logger.cpp builder.cpp query_data_manager.cpp ../configuration/default_config_manager.cpp ../connection/default_connection_manager.cpp ../engine/default_engine.cpp  ../job/default_job_manager.cpp ../job/default_server_job.cpp ../metada/default_metadata_manager.cpp ../optimizer/default_optimizer.cpp ../parser/default_parser.cpp ../query/default_query_data_manager.cpp ../parser/bison.cpp  ../parser/flex.cpp  ../parser/schema_builder.cpp ../storage/default_storage_manager.cpp ../engine/ddl_operators.cpp ../engine/dml_operators.cpp 
+#savime_SOURCES = main.cpp metadata.cpp system_logger.cpp builder.cpp query_data_manager.cpp ../configuration/default_config_manager.cpp ../connection/default_connection_manager.cpp ../engine/default_engine.cpp  ../job/default_job_manager.cpp ../job/default_server_job.cpp ../metada/default_metadata_manager.cpp ../optimizer/default_optimizer.cpp ../parser/default_parser.cpp ../query/default_query_data_manager.cpp ../parser/bison.cpp  ../parser/flex.cpp  ../parser/schema_builder.cpp ../storage/default_storage_manager.cpp ../engine/ddl_operators.cpp ../engine/dml_operators.cpp ../engine/viz.cpp
+#savime_CXXFLAGS = -I/usr/local/include/paraview-5.4 -DCATALYST
+#savime_LDFLAGS = -Wl,-rpath,/usr/local/lib/paraview-5.4/ -L/usr/local/lib/paraview-5.4/ -I/usr/local/include/paraview-5.4
+savime_LDADD = -lpthread ../rdmap/librdmap.a -lrdmacm -libverbs
+#savime_LDADD = -lpthread ../rdmap/librdmap.a -lrdmacm -libverbs /usr/local/lib/libvtk* 
 all: all-am
 
 .SUFFIXES:
