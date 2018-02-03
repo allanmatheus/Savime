@@ -10,7 +10,7 @@ using namespace std;
 
 /**
  * Inferface for interacting with the Engine. While the engine is running, 
- * it notifies an EngineListener as data gets read to be sent for the client.
+ * it notifies an EngineListener as data gets read to be sent to the client.
  */
 class EngineListener
 {

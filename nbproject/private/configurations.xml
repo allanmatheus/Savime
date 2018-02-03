@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name=".kdev4">
+      </df>
+      <df name="autom4te.cache">
+      </df>
+      <df name="client">
+        <df name=".deps">
+        </df>
+        <df name=".libs">
+        </df>
+        <in>client.cpp</in>
+      </df>
+      <df name="configuration">
+        <df name=".deps">
+        </df>
+        <in>default_config_manager.cpp</in>
+        <in>default_config_manager.h</in>
+      </df>
+      <df name="connection">
+        <df name=".deps">
+        </df>
+        <df name=".libs">
+        </df>
+        <in>default_connection_manager.cpp</in>
+        <in>default_connection_manager.h</in>
+      </df>
+      <df name="core">
+        <df name=".deps">
+        </df>
+        <df name=".libs">
+        </df>
+        <df name="include">
+          <in>builder.h</in>
+          <in>config_manager.h</in>
+          <in>connection_manager.h</in>
+          <in>dynamic_bitset.h</in>
+          <in>engine.h</in>
+          <in>job_manager.h</in>
+          <in>metadata.h</in>
+          <in>optimizer.h</in>
+          <in>parser.h</in>
+          <in>query_data_manager.h</in>
+          <in>rtree.h</in>
+          <in>savime.h</in>
+          <in>savime_bitmask.h</in>
+          <in>storage_manager.h</in>
+          <in>system_logger.h</in>
+          <in>util.h</in>
+        </df>
+        <in>builder.cpp</in>
+        <in>main.cpp</in>
+        <in>metadata.cpp</in>
+        <in>query_data_manager.cpp</in>
+        <in>system_logger.cpp</in>
+      </df>
+      <df name="docs">
+        <df name="search">
+        </df>
+      </df>
+      <df name="engine">
+        <df name=".deps">
+        </df>
+        <in>aggregate.h</in>
+        <in>catalyst.cpp</in>
+        <in>ddl_operators.cpp</in>
+        <in>ddl_operators.h</in>
+        <in>default_engine.cpp</in>
+        <in>default_engine.h</in>
+        <in>dimjoin.h</in>
+        <in>dml_operators.cpp</in>
+        <in>dml_operators.h</in>
+        <in>viz.cpp</in>
+        <in>viz.h</in>
+      </df>
+      <df name="etc">
+      </df>
+      <df name="job">
+        <df name=".deps">
+        </df>
+        <in>default_job_manager.cpp</in>
+        <in>default_job_manager.h</in>
+        <in>default_server_job.cpp</in>
+        <in>default_server_job.h</in>
+      </df>
+      <df name="lib">
+        <df name=".deps">
+        </df>
+        <df name=".libs">
+        </df>
+        <in>protocol.h</in>
+        <in>savime_lib.cpp</in>
+        <in>savime_lib.h</in>
+      </df>
+      <df name="m4">
+      </df>
+      <df name="metada">
+        <df name=".deps">
+        </df>
+        <in>default_metada_manager.h</in>
+        <in>default_metadata_manager.cpp</in>
+      </df>
+      <df name="optimizer">
+        <df name=".deps">
+        </df>
+        <in>default_optimizer.cpp</in>
+        <in>default_optimizer.h</in>
+      </df>
+      <df name="parser">
+        <df name=".deps">
+        </df>
+        <in>bison.cpp</in>
+        <in>bison.h</in>
+        <in>default_parser.cpp</in>
+        <in>default_parser.h</in>
+        <in>flex.cpp</in>
+        <in>flex.h</in>
+        <in>grammar.y</in>
+        <in>schema_builder.cpp</in>
+        <in>schema_builder.h</in>
+        <in>tree.h</in>
+      </df>
+      <df name="query">
+        <df name=".deps">
+        </df>
+        <in>default_query_data_manager.cpp</in>
+        <in>default_query_data_manager.h</in>
+      </df>
+      <df name="rdmap">
+        <df name=".deps">
+        </df>
+        <df name=".libs">
+        </df>
+        <in>client.cpp</in>
+        <in>common.cpp</in>
+        <in>common.h</in>
+        <in>messages.cpp</in>
+        <in>messages.h</in>
+        <in>rdmap.h</in>
+        <in>server.cpp</in>
+      </df>
+      <df name="storage">
+        <df name=".deps">
+        </df>
+        <in>default_storage_manager.cpp</in>
+        <in>default_storage_manager.h</in>
+        <in>default_template.h</in>
+      </df>
+      <df name="test">
+      </df>
+      <df name="wrapper">
+        <in>wrapper.cpp</in>
+      </df>
+      <in>confdefs.h</in>
+      <in>config.h</in>
+    </df>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <platform>2</platform>
+      </toolsSet>
+      <compile>
+        <compiledirpicklist>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+        </compiledirpicklist>
+        <compiledir>${AUTO_FOLDER}</compiledir>
+        <compilecommandpicklist>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+        </compilecommandpicklist>
+        <compilecommand>${AUTO_COMPILE}</compilecommand>
+      </compile>
+      <dbx_gdbdebugger version="1">
+        <gdb_pathmaps>
+        </gdb_pathmaps>
+        <gdb_interceptlist>
+          <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
+        </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
+        <gdb_options>
+          <DebugOptions>
+          </DebugOptions>
+        </gdb_options>
+        <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
+      </dbx_gdbdebugger>
+      <nativedebugger version="1">
+        <engine>gdb</engine>
+      </nativedebugger>
+      <runprofile version="9">
+        <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 4 -s '/dev/shm/savime'</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 1 -s '/dev/shm/savime'</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 2 -s '/dev/shm/savime'</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 1 -s '/dev/shm/savime' -f '/home/hermano/Dropbox/workspace/Savime/boot.txt'</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 2 -s '/dev/shm/savime' -f '/home/hermano/Dropbox/workspace/Savime/boot.txt'</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 4 -s '/dev/shm/savime' -f '/home/hermano/Dropbox/workspace/Savime/boot.txt'</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 4 -s '/dev/shm/savime' -f '/home/hermano/Dropbox/workspace/Savime/etc/savime.boot''</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 4 -s '/dev/shm/savime' -f '/home/hermano/Dropbox/workspace/Savime/etc/savime.boot'</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"    -b '/home/hermano/Dropbox/workspace/Savime/etc/savime.boot'</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"    -b '/home/hermano/Dropbox/workspace/Savime/etc/savime.boot' -f '/home/hermano/Dropbox/workspace/Savime/etc/savime.config'</runcommandpicklistitem>
+        </runcommandpicklist>
+        <runcommand>"${OUTPUT_PATH}"    -b '/home/hermano/Dropbox/workspace/Savime/etc/savime.boot' -f '/home/hermano/Dropbox/workspace/Savime/etc/savime.config'</runcommand>
+        <rundir>.</rundir>
+        <buildfirst>true</buildfirst>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+  </confs>
+</configurationDescriptor>

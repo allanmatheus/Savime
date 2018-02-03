@@ -475,6 +475,9 @@ int create_dataset(int32_t subtarIndex, OperationPtr operation, ConfigurationMan
             std::string file, filler = parameter2->literal_str;
             bool fileFiller = false; file = filler; 
             
+            file = between(file, "\"", "\"");
+            file.erase(std::remove(file.begin(), file.end(), '"'), file.end());
+            
             if(!metadataManager->ValidateIdentifier(dsName, "dataset"))
                 throw std::runtime_error("Invalid dataset name: "+dsName+".");
             
