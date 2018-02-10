@@ -98,9 +98,8 @@ savime-main.o: main.cpp /usr/include/stdc-predef.h ../config.h \
  /usr/include/c++/5/bits/shared_ptr.h \
  /usr/include/c++/5/bits/shared_ptr_base.h \
  /usr/include/c++/5/bits/allocated_ptr.h \
- /usr/include/c++/5/ext/aligned_buffer.h include/bitset.h \
- include/savime.h /usr/include/c++/5/memory \
- /usr/include/c++/5/bits/stl_construct.h \
+ /usr/include/c++/5/ext/aligned_buffer.h include/savime.h \
+ /usr/include/c++/5/memory /usr/include/c++/5/bits/stl_construct.h \
  /usr/include/c++/5/bits/stl_uninitialized.h \
  /usr/include/c++/5/bits/stl_tempbuf.h \
  /usr/include/c++/5/bits/stl_raw_storage_iter.h \
@@ -553,8 +552,6 @@ savime-main.o: main.cpp /usr/include/stdc-predef.h ../config.h \
 /usr/include/c++/5/bits/allocated_ptr.h:
 
 /usr/include/c++/5/ext/aligned_buffer.h:
-
-include/bitset.h:
 
 include/savime.h:
 

@@ -20,8 +20,6 @@
 #include <stdexcept>
 #include <mutex>
 #include <condition_variable>
-#include <include/bitset.h>
-
 #include "include/savime.h"
 #include "include/builder.h"
 #include "include/connection_manager.h"

@@ -9,8 +9,6 @@
       <df name="client">
         <df name=".deps">
         </df>
-        <df name=".libs">
-        </df>
         <in>client.cpp</in>
       </df>
       <df name="configuration">
@@ -29,8 +27,6 @@
       </df>
       <df name="core">
         <df name=".deps">
-        </df>
-        <df name=".libs">
         </df>
         <df name="include">
           <in>bitset.h</in>
@@ -88,8 +84,6 @@
       <df name="lib">
         <df name=".deps">
         </df>
-        <df name=".libs">
-        </df>
         <in>protocol.h</in>
         <in>savime_lib.cpp</in>
         <in>savime_lib.h</in>
@@ -130,8 +124,6 @@
       </df>
       <df name="rdmap">
         <df name=".deps">
-        </df>
-        <df name=".libs">
         </df>
         <in>client.cpp</in>
         <in>common.cpp</in>
