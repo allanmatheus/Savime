@@ -83,11 +83,8 @@
       </toolsSet>
       <flagsDictionary>
         <element flagsID="0" commonFlags="-m64 -fpic -fopenmp -std=gnu++0x"/>
-        <element flagsID="1"
-                 commonFlags="-m64 -mtune=generic -march=x86-64 -O3 -std=gnu++11 -fpic -fopenmp -fstack-protector-strong"/>
+        <element flagsID="1" commonFlags="-m64 -fpic -fopenmp -std=gnu++0x -fPIC"/>
         <element flagsID="2"
-                 commonFlags="-m64 -mtune=generic -march=x86-64 -std=gnu++11 -fopenmp -fPIC -fstack-protector-strong"/>
-        <element flagsID="3"
                  commonFlags="-m64 -mtune=generic -march=x86-64 -std=gnu++11 -fpic -fopenmp -fstack-protector-strong"/>
       </flagsDictionary>
       <codeAssistance>
@@ -105,7 +102,7 @@
         </preBuild>
       </makefileType>
       <item path="client/client.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="configuration/default_config_manager.cpp"
@@ -143,7 +140,7 @@
         </ccTool>
       </item>
       <item path="engine/catalyst.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="3">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/local/include/paraview-5.4</pElem>
             <pElem>engine</pElem>
@@ -201,21 +198,32 @@
         </ccTool>
       </item>
       <item path="engine/dml_operators.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="3">
+        <ccTool flags="0">
           <incDir>
-            <pElem>core/include</pElem>
-            <pElem>engine</pElem>
-            <pElem>/usr/include/boost/config</pElem>
-            <pElem>/usr/include/boost/dynamic_bitset</pElem>
-            <pElem>/usr/include/boost/detail</pElem>
-            <pElem>/usr/include/boost/move</pElem>
-            <pElem>/usr/include/boost/exception</pElem>
             <pElem>core</pElem>
+            <pElem>.</pElem>
+            <pElem>include</pElem>
+            <pElem>../core/include</pElem>
+            <pElem>../core/os/linux/include</pElem>
+            <pElem>../common/include</pElem>
+            <pElem>../common/os/linux/include</pElem>
+            <pElem>../binary/include</pElem>
+            <pElem>../jni/include</pElem>
+            <pElem>../jni/os/linux/include</pElem>
+            <pElem>/include</pElem>
+            <pElem>/include/linux</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+            <Elem>IGNITE_IMPL</Elem>
+            <Elem>TIME</Elem>
+            <Elem>__STDC_CONSTANT_MACROS</Elem>
+            <Elem>__STDC_LIMIT_MACROS</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="engine/viz.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="3">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/local/include/paraview-5.4</pElem>
             <pElem>core/include</pElem>
@@ -232,9 +240,13 @@
       <folder path="0/client">
         <ccTool>
           <incDir>
-            <pElem>lib</pElem>
             <pElem>client</pElem>
+            <pElem>.</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+            <Elem>TIME</Elem>
+          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/configuration">
@@ -340,10 +352,14 @@
       <folder path="0/lib">
         <ccTool>
           <incDir>
-            <pElem>lib</pElem>
-            <pElem>rdmap</pElem>
             <pElem>client</pElem>
+            <pElem>.</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+            <Elem>PIC</Elem>
+            <Elem>TIME</Elem>
+          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/metada">
@@ -449,9 +465,14 @@
       <folder path="0/rdmap">
         <ccTool>
           <incDir>
-            <pElem>/usr/include/rdma</pElem>
             <pElem>rdmap</pElem>
+            <pElem>.</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+            <Elem>PIC</Elem>
+            <Elem>TIME</Elem>
+          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/storage">
@@ -533,19 +554,19 @@
         </ccTool>
       </item>
       <item path="rdmap/client.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="2">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="rdmap/common.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="3">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="rdmap/messages.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="2">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="rdmap/server.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="2">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="storage/default_storage_manager.cpp"
@@ -556,7 +577,7 @@
         </ccTool>
       </item>
       <item path="wrapper/wrapper.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="3">
+        <ccTool flags="2">
         </ccTool>
       </item>
     </conf>
