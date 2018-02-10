@@ -447,6 +447,11 @@ public:
      */
     virtual SavimeResult ComparisonDim(string op, DimSpecPtr dimSpecs, int64_t totalLength, string operand2, DatasetPtr& destinyDataset)= 0;
     
+     /**
+     * Return a set of subtars indexes for positions within a range.
+     * @return SAVIME_SUCCESS on success or SAVIME_FAILURE otherwise.
+     */
+    virtual SavimeResult SubsetDims(vector<DimSpecPtr> dimSpecs, vector<int64_t> lowerBounds, vector<int64_t> upperBounds, DatasetPtr& destinyDataset) = 0;
     
      /**
      * Executes an arithmetic operation between operand1 and operand2 and saves the result in the destinyDataset.
@@ -579,23 +584,30 @@ typedef std::shared_ptr<StorageManager> StorageManagerPtr;
  */     
 inline void dbg_print_dataset(DatasetHandler * handler)
 {
-    DatasetPtr ds = handler->GetDataSet();
-    int64_t i = 0; handler->CursorAt(0);
-    
-    printf("%s - %s\n", ds->name, ds->location.c_str());
-    printf("-------------------------------------------\n");
-    
-    while(handler->HasNext())
+    if(handler)
     {
-        switch(handler->GetDataSet()->type)
+        DatasetPtr ds = handler->GetDataSet();
+        int64_t i = 0; handler->CursorAt(0);
+
+        printf("%s - %s\n", ds->name, ds->location.c_str());
+        printf("-------------------------------------------\n");
+
+        while(handler->HasNext())
         {
-            case INTEGER_TYPE: printf("%ld - %d\n",    i++,  *((int32_t*)handler->Next())); break;
-            case LONG_TYPE:    printf("%ld - %ld\n",   i++,  *((int64_t*)handler->Next())); break;  
-            case FLOAT_TYPE:   printf("%ld - %.2f\n",  i++,  *((float*)handler->Next()));   break;  
-            case DOUBLE_TYPE:  printf("%ld - %.2lf\n", i++,  *((double*)handler->Next()));  break;  
+            switch(handler->GetDataSet()->type)
+            {
+                case INTEGER_TYPE: printf("%ld - %d\n",    i++,  *((int32_t*)handler->Next())); break;
+                case LONG_TYPE:    printf("%ld - %ld\n",   i++,  *((int64_t*)handler->Next())); break;  
+                case FLOAT_TYPE:   printf("%ld - %.2f\n",  i++,  *((float*)handler->Next()));   break;  
+                case DOUBLE_TYPE:  printf("%ld - %.2lf\n", i++,  *((double*)handler->Next()));  break;  
+            }
         }
+        printf("-------------------------------------------\n");
     }
-    printf("-------------------------------------------\n");
+    else
+    {
+        printf("NULL HANDLER---------\n");
+    }
 }
 
 #endif /* STORAGE_MANAGER_H */

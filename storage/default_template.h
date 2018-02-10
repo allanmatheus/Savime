@@ -776,9 +776,95 @@ public:
         return SAVIME_SUCCESS;
     }
     
+    SavimeResult SubsetDims(vector<DimSpecPtr> dimSpecs, vector<int64_t> lowerBounds, vector<int64_t> upperBounds, DatasetPtr& destinyDataset)
+    {
+        vector<DimSpecPtr> subsetSpecs; int64_t offset = 0, subsetLen = 1;
+        
+        for(int32_t i=0; i < dimSpecs.size(); i++)
+        {
+            lowerBounds[i] =std::max(lowerBounds[i], dimSpecs[i]->lower_bound);
+            upperBounds[i] =std::min(upperBounds[i], dimSpecs[i]->upper_bound);
+        }
+        
+        for(int32_t i=0; i < dimSpecs.size(); i++)
+        {
+            offset +=   (lowerBounds[i]-dimSpecs[i]->lower_bound)*dimSpecs[i]->adjacency;
+            subsetLen *= (upperBounds[i]-lowerBounds[i]+1);
+        }
+        
+        for(int32_t i=0; i < dimSpecs.size(); i++)
+        {
+            DimSpecPtr subSpecs = DimSpecPtr(new DimensionSpecification());
+            subSpecs->lower_bound = lowerBounds[i];
+            subSpecs->upper_bound = upperBounds[i];
+            subSpecs->dimension = dimSpecs[i]->dimension;
+            subSpecs->adjacency = dimSpecs[i]->adjacency;
+            subsetSpecs.push_back(subSpecs);
+        }
+        
+        std::sort(subsetSpecs.begin(), subsetSpecs.end(), compareAdj);
+        std::sort(dimSpecs.begin(), dimSpecs.end(), compareAdj);
+        
+        for(DimSpecPtr spec : subsetSpecs)
+        {
+            bool isPosterior = false;
+            spec->skew = 1;
+            spec->adjacency = 1;
+
+            for(DimSpecPtr innerSpec : subsetSpecs)
+            {
+                if(isPosterior)
+                    spec->adjacency *= innerSpec->GetLength();
+
+                if(!spec->dimension->GetName()
+                   .compare(innerSpec->dimension->GetName()))
+                {
+                    isPosterior = true;
+                }
+
+                if(isPosterior)
+                    spec->skew *= innerSpec->GetLength();
+            }
+        }
+        
+        vector<int64_t> realIndexes;
+        realIndexes.resize(subsetSpecs.size());
+        
+        destinyDataset = _storageManager->Create(LONG_TYPE, subsetLen);
+        destinyDataset->has_indexes = true;
+        if(destinyDataset == NULL)
+              throw std::runtime_error("Could not create dataset.");
+        
+        DatasetHandlerPtr handler = _storageManager->GetHandler(destinyDataset);
+        int64_t * buffer = (int64_t*) handler->GetBuffer();
+
+        for(int64_t i=0; i < subsetLen; i++)
+        {
+            int64_t index = 0;
+            
+            for(int64_t dim = 0; dim < subsetSpecs.size(); dim++)
+            {
+                realIndexes[dim] = (i%subsetSpecs[dim]->skew)/subsetSpecs[dim]->adjacency;
+            }
+            
+            for(int64_t dim = 0; dim < dimSpecs.size(); dim++)
+            {
+                index += realIndexes[dim]*dimSpecs[dim]->adjacency;
+            }
+            
+            buffer[i] = index+offset;
+        }
+        
+        handler->Close();
+        
+        
+        return SAVIME_SUCCESS;
+    }
     
     SavimeResult ComparisonOrderedDim(std::string op, DimSpecPtr dimSpecs, T1 operand2, int64_t totalLength, DatasetPtr& destinyDataset)
     {
+      
+     
         #define MIN(X, Y) (X < Y) ? X : Y 
         map<string, string> invertedOp = {{">", "<="}, {"<", ">="}, {">=", "<"}, {"<=", ">"}};
         
@@ -799,12 +885,18 @@ public:
         if(destinyDataset->bitMask == NULL)
             throw std::runtime_error("Could not allocate memory for the bitmask index.");
         
+       
         //Exact real index is != -1 when there is a perfect match
         int64_t exactRealIndex = Logical2Real(dimSpecs->dimension->GetDimension(), operand2);
         
         //Approx real index is != -1 when logical index is in the range
         int64_t approxRealIndex = Logical2ApproxReal(dimSpecs->dimension->GetDimension(), operand2);  
-            
+       
+        
+        #ifdef TIME 
+            GET_T1();
+        #endif 
+        
         if(approxRealIndex > INVALID_EXACT_REAL_INDEX)
         {
             if(approxRealIndex < dimSpecs->lower_bound)
@@ -979,6 +1071,11 @@ public:
         {
             throw std::runtime_error("Invalid comparison operation.");
         }
+        
+        #ifdef TIME 
+           GET_T2();
+           _systemLogger->LogEvent("TemplateStorage", "OrderedComparison took "+std::to_string(GET_DURATION())+" ms.");
+        #endif
         
         return SAVIME_SUCCESS;
     }

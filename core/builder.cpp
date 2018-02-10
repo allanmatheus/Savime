@@ -91,11 +91,11 @@ ModulesBuilder::ModulesBuilder(int argc, char ** args)
    int32_t port = _configurationManager->GetIntValue(SERVER_PORT(0));
            
    if(!EXIST_FILE(shmPath))
-        if (!mkdir(shmPath.c_str(), S_IRWXU|S_IRWXG|S_IROTH|S_IXOTH))
+        if (mkdir(shmPath.c_str(), S_IRWXU|S_IRWXG|S_IROTH|S_IXOTH) == -1)
             throw std::runtime_error("Could not create dir "+shmPath+". "+strerror(errno));
    
    if(!EXIST_FILE(secPath))
-        if (!mkdir(secPath.c_str(), S_IRWXU|S_IRWXG|S_IROTH|S_IXOTH))
+        if (mkdir(secPath.c_str(), S_IRWXU|S_IRWXG|S_IROTH|S_IXOTH) == -1)
             throw std::runtime_error("Could not create dir "+secPath+". "+strerror(errno));
 
    

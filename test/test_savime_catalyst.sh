@@ -24,4 +24,4 @@ savimec 'load_subtar("data2", "ordered, time, #1, #100| ordered, x, #1, #100| or
 #Creating vizualizations
 mkdir $(pwd)/viz
 #savimec 'catalyze(subset(data2,  time, 1, 10, x, 1, 50, y, 1, 25), "'$(pwd)'/viz/");'
-savimec 'catalyze(subset(data, time, 50, 100), where(geo, z < -13.0), top, "'$(pwd)'/viz/");'
+#savimec 'catalyze(subset(data, time, 50, 100), where(geo, z < -13.0), top, "'$(pwd)'/viz/");'

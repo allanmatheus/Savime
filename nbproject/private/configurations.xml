@@ -33,6 +33,7 @@
         <df name=".libs">
         </df>
         <df name="include">
+          <in>bitset.h</in>
           <in>builder.h</in>
           <in>config_manager.h</in>
           <in>connection_manager.h</in>
@@ -45,7 +46,6 @@
           <in>query_data_manager.h</in>
           <in>rtree.h</in>
           <in>savime.h</in>
-          <in>savime_bitmask.h</in>
           <in>storage_manager.h</in>
           <in>system_logger.h</in>
           <in>util.h</in>
@@ -149,6 +149,8 @@
         <in>default_template.h</in>
       </df>
       <df name="test">
+        <df name="viz">
+        </df>
       </df>
       <df name="wrapper">
         <in>wrapper.cpp</in>
@@ -182,8 +184,6 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
-        <gdb_signals>
-        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>

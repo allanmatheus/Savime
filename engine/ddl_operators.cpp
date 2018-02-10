@@ -499,7 +499,7 @@ int create_dataset(int32_t subtarIndex, OperationPtr operation, ConfigurationMan
             }
             else if(EXIST_FILE(file))
             {
-                std::string dir = configurationManager->GetStringValue(SHM_STORAGE_DIR);
+                std::string dir = configurationManager->GetStringValue(SEC_STORAGE_DIR);
 
                 if (file.compare(0, dir.length(), dir) != 0)
                 {

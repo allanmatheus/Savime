@@ -116,6 +116,8 @@ public:
     SavimeResult Comparison(std::string op,  DatasetPtr operand1, std::string operand2,  DatasetPtr& destinyDataset);
     SavimeResult ComparisonDim(std::string op,  DimSpecPtr  dimSpecs, int64_t totalLength, std::string operand2,  DatasetPtr& destinyDataset);
     
+    SavimeResult SubsetDims(vector<DimSpecPtr> dimSpecs, vector<int64_t> lowerBounds, vector<int64_t> upperBounds, DatasetPtr& destinyDataset);
+    
     SavimeResult Aritmethic(std::string op, DatasetPtr operand1,  DatasetPtr operand2,  DatasetPtr& destinyDataset);
     SavimeResult Aritmethic(std::string op, DatasetPtr operand1, double operand2,  DatasetPtr& destinyDataset);
     SavimeResult Aritmethic(std::string op, DatasetPtr operand1, float operand2,  DatasetPtr& destinyDataset);

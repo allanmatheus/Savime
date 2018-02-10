@@ -328,7 +328,8 @@ int subset(int32_t subtarIndex, OperationPtr operation, ConfigurationManagerPtr 
                 subtar = generator->GetSubtar(currentSubtar);
                 if(subtar == NULL) return SAVIME_SUCCESS;
                 currentSubtarIntersection = TOTAL;
-                        
+                bool isAllOrdered = true;        
+                
                 for(auto entry : subtar->GetDimSpecs())
                 {
                     double specsLowerBound, specsUpperBound;
@@ -337,6 +338,7 @@ int subset(int32_t subtarIndex, OperationPtr operation, ConfigurationManagerPtr 
                     auto dim = outputTAR->GetDataElement(dimName)->GetDimension();
                     auto originalDim = inputTAR->GetDataElement(dimName)->GetDimension();
                     
+                    if(entry.second->type != ORDERED) isAllOrdered = false;
                     if(filteredDim.find(dimName) == filteredDim.end()) continue;
                     
                     auto lowerLogicalIndex = storageManager->Real2Logical(originalDim, specs->lower_bound);
@@ -409,49 +411,78 @@ int subset(int32_t subtarIndex, OperationPtr operation, ConfigurationManagerPtr 
                             newDimSpec->type = specs->type;
                             newDimSpec->dataset = specs->dataset;
 
-                            if(newDimSpec->lower_bound+offset != specs->lower_bound)
+                            if(!isAllOrdered)
                             {
-                                if(storageManager->ComparisonDim(string(">="), specs, totalLength, subsetLowerBound, comparisonResult) != SAVIME_SUCCESS)
-                                    throw std::runtime_error(ERROR_MSG("ComparisonDim", "SUBSET"));
+                                if(newDimSpec->lower_bound+offset != specs->lower_bound)
+                                {
+                                    if(storageManager->ComparisonDim(string(">="), specs, totalLength, subsetLowerBound, comparisonResult) != SAVIME_SUCCESS)
+                                        throw std::runtime_error(ERROR_MSG("ComparisonDim", "SUBSET"));
 
-                                if(filter != NULL)
-                                {
-                                    if(storageManager->And(filter, comparisonResult, filter) != SAVIME_SUCCESS)
-                                        throw std::runtime_error(ERROR_MSG("And", "SUBSET"));
+                                    if(filter != NULL)
+                                    {
+                                        if(storageManager->And(filter, comparisonResult, filter) != SAVIME_SUCCESS)
+                                            throw std::runtime_error(ERROR_MSG("And", "SUBSET"));
+                                    }
+                                    else
+                                    {
+                                        filter = comparisonResult;
+                                    }
                                 }
-                                else
-                                {
-                                    filter = comparisonResult;
-                                }
-                            }
 
-                            if(newDimSpec->upper_bound+offset != specs->upper_bound)
-                            {
-                                if(storageManager->ComparisonDim("<=", specs, totalLength, subsetUpperBound, comparisonResult) != SAVIME_SUCCESS)
-                                    throw std::runtime_error(ERROR_MSG("ComparisonDim", "SUBSET"));
+                                if(newDimSpec->upper_bound+offset != specs->upper_bound)
+                                {
+                                    if(storageManager->ComparisonDim("<=", specs, totalLength, subsetUpperBound, comparisonResult) != SAVIME_SUCCESS)
+                                        throw std::runtime_error(ERROR_MSG("ComparisonDim", "SUBSET"));
 
-                                if(filter != NULL)
-                                {
-                                    if(storageManager->And(filter, comparisonResult, filter) != SAVIME_SUCCESS)
-                                        throw std::runtime_error(ERROR_MSG("And", "SUBSET"));
-                                }
-                                else
-                                {
-                                    filter = comparisonResult;
+                                    if(filter != NULL)
+                                    {
+                                        if(storageManager->And(filter, comparisonResult, filter) != SAVIME_SUCCESS)
+                                            throw std::runtime_error(ERROR_MSG("And", "SUBSET"));
+                                    }
+                                    else
+                                    {
+                                        filter = comparisonResult;
+                                    }
                                 }
                             }
 
                             dimensionsSpecs.push_back(newDimSpec);
                             newSubtar->AddDimensionsSpecification(newDimSpec);   
                         }
-                        
-                        if(!filter->bitMask->any_parallel(numThreads, workPerThread))
+                            
+                           
+                        if(isAllOrdered)
                         {
-                            generator->TestAndDisposeSubtar(currentSubtar);
-                            currentSubtar++;
-                            continue;
+                            /*TEST CODE STARTS HERE*/
+                            vector<int64_t> lowerBounds; vector<int64_t> upperBounds;
+                            vector<DimSpecPtr> _dimensionsSpecs;
+                            LogicalIndex lw, up;
+
+                            for(auto entry : subtar->GetDimSpecs())
+                            {
+                                auto outDim = outputTAR->GetDataElement(entry.first)->GetDimension();
+                                SET_LOGICAL_INDEX(lw, outDim->lower_bound);
+                                SET_LOGICAL_INDEX(up, outDim->upper_bound);
+                                auto realLower = storageManager->Logical2Real(entry.second->dimension->GetDimension(), lw);
+                                auto realUpper = storageManager->Logical2Real(entry.second->dimension->GetDimension(), up);
+                                lowerBounds.push_back(realLower);
+                                upperBounds.push_back(realUpper);
+                                _dimensionsSpecs.push_back(entry.second);
+                            }
+                            storageManager->SubsetDims(_dimensionsSpecs, lowerBounds, upperBounds, filter);
+
+                            /*TEST CODE ENDS HERE*/
                         }
-                        
+                        else
+                        {
+                            if(!filter->bitMask->any_parallel(numThreads, workPerThread))
+                            {
+                                generator->TestAndDisposeSubtar(currentSubtar);
+                                currentSubtar++;
+                                continue;
+                            }
+                        }
+                             
                         for(auto entry : subtar->GetDimSpecs())
                         {
                             LogicalIndex logLower, logUpper;
@@ -521,6 +552,9 @@ int subset(int32_t subtarIndex, OperationPtr operation, ConfigurationManagerPtr 
 
                             newSubtar->AddDataSet(entry.first, dataset);
                         }
+                        
+                        //dbg_print_dataset(storageManager->GetHandler(_dsaux).get());
+                        //dbg_print_dataset(storageManager->GetHandler(filter).get());
 
                         std::sort(dimensionsSpecs.begin(), dimensionsSpecs.end(), compareAdj);
                         for(DimSpecPtr spec : dimensionsSpecs)

@@ -469,7 +469,7 @@
         </ccTool>
       </item>
       <item path="rdmap/messages.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="2">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="rdmap/server.cpp" ex="false" tool="1" flavor2="8">

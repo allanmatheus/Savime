@@ -179,6 +179,13 @@ TARPtr SchemaBuilder::InferSchemaForSubsetOp(OperationPtr operation)
             dim->upper_bound = operation->GetParametersByName(UP(i))->literal_dbl;
             dim->upper_bound -= dim->upper_bound - ((int64_t)(dim->upper_bound/dim->spacing))*dim->spacing;
         }
+        /*else
+        {
+            dim->lower_bound = operation->GetParametersByName(LB(i))->literal_dbl;
+            dim->lower_bound += dim->lower_bound - ((int64_t)(dim->lower_bound/dim->spacing))*dim->spacing;
+            dim->upper_bound = operation->GetParametersByName(UP(i))->literal_dbl;
+            dim->upper_bound -= dim->upper_bound - ((int64_t)(dim->upper_bound/dim->spacing))*dim->spacing;
+        }*/
        
         dim->real_lower_bound = 0;
         dim->real_upper_bound = dim->GetLength()-1;

@@ -991,6 +991,7 @@ OperationPtr DefaultParser::ParseSubset(QueryExpressionPtr   queryExpressionNode
     
     
     if(hasExplicitDimensions)
+    //if(false)
     {
         vector<OperationPtr> comparisonOperations;
         TARPtr andEDFilter = NULL; 

@@ -388,10 +388,14 @@ public:
     // subscript
     void inline fast_assign(size_type pos, bool val)
     {
+       Block bits = m_bits[pos/bits_per_block];
+       
        if(val)
-           m_bits[pos/bits_per_block] |= (1 << (pos%bits_per_block));
+           bits |= (1 << (pos%bits_per_block));
        else
-           m_bits[pos/bits_per_block] &= ~(1 << (pos%bits_per_block));
+           bits &= ~(1 << (pos%bits_per_block));
+       
+        m_bits[pos/bits_per_block] = bits;
     }
     
     void inline fast_set(size_type pos)

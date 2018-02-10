@@ -20,6 +20,7 @@
 #include <stdexcept>
 #include <mutex>
 #include <condition_variable>
+#include <include/bitset.h>
 
 #include "include/savime.h"
 #include "include/builder.h"
@@ -28,7 +29,7 @@
 #define LOOP() while(true){conditionVar.wait(locker);}
 
 int main(int argc, char** args){
-        
+
         std::condition_variable conditionVar; std::mutex lock;
         std::unique_lock<std::mutex> locker(lock);
         ModulesBuilder * builder;
