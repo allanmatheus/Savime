@@ -826,9 +826,18 @@ public:
                     spec->skew *= innerSpec->GetLength();
             }
         }
+
+        int64_t subsetSkews[subsetSpecs.size()];
+        int64_t subsetSkewsMul[subsetSpecs.size()];
+        int64_t subsetSkewsShift[subsetSpecs.size()];
+        int64_t subsetAdjacenciesMul[subsetSpecs.size()];
+        int64_t subsetAdjacenciesShift[subsetSpecs.size()];
+        int64_t dimSpecsAdjacencies[subsetSpecs.size()]; 
         
-        vector<int64_t> realIndexes;
-        realIndexes.resize(subsetSpecs.size());
+        int numCores = _configurationManager->GetIntValue(MAX_THREADS);
+        int32_t minWorkPerThread = _configurationManager->GetIntValue(WORK_PER_THREAD);
+        int64_t startPositionPerCore[numCores], finalPositionPerCore[numCores]; 
+        SetWorkloadPerThread(subsetLen, minWorkPerThread, startPositionPerCore, finalPositionPerCore, numCores);
         
         destinyDataset = _storageManager->Create(LONG_TYPE, subsetLen);
         destinyDataset->has_indexes = true;
@@ -838,18 +847,37 @@ public:
         DatasetHandlerPtr handler = _storageManager->GetHandler(destinyDataset);
         int64_t * buffer = (int64_t*) handler->GetBuffer();
 
-        for(int64_t i=0; i < subsetLen; i++)
+        for(int64_t dim = 0; dim < subsetSpecs.size(); dim++)
+        {
+           subsetSkews[dim] = subsetSpecs[dim]->skew;
+           fast_division(subsetLen, subsetSpecs[dim]->skew, subsetSkewsMul[dim], subsetSkewsShift[dim]);
+           fast_division(subsetLen, subsetSpecs[dim]->adjacency, subsetAdjacenciesMul[dim],  subsetAdjacenciesShift[dim]);
+        }
+
+        for(int64_t dim = 0; dim < dimSpecs.size(); dim++)
+        {
+            dimSpecsAdjacencies[dim] = dimSpecs[dim]->adjacency;
+        }
+        
+        int32_t numDim = subsetSpecs.size();
+        #pragma omp parallel
+        for(int64_t i = startPositionPerCore[omp_get_thread_num()] ; i < finalPositionPerCore[omp_get_thread_num()]; ++i)
         {
             int64_t index = 0;
-            
-            for(int64_t dim = 0; dim < subsetSpecs.size(); dim++)
+            int64_t realIndexes[numDim];
+                
+            for(int64_t dim = 0; dim < numDim; dim++)
             {
-                realIndexes[dim] = (i%subsetSpecs[dim]->skew)/subsetSpecs[dim]->adjacency;
+                //realIndexes[dim] = (i%subsetSpecs[dim]->skew)/subsetSpecs[dim]->adjacency;
+                //realIndexes[dim] = (i%subsetSkews[dim])/subsetAdjacencies[dim];   
+                int64_t subsetSkewDiv = (i*subsetSkewsMul[dim]) >> subsetSkewsShift[dim];
+                realIndexes[dim] = i - subsetSkewDiv*subsetSkews[dim];
+                realIndexes[dim] = (realIndexes[dim]*subsetAdjacenciesMul[dim]) >> subsetAdjacenciesShift[dim];
             }
             
-            for(int64_t dim = 0; dim < dimSpecs.size(); dim++)
+            for(int64_t dim = 0; dim < numDim; dim++)
             {
-                index += realIndexes[dim]*dimSpecs[dim]->adjacency;
+                index += realIndexes[dim]*dimSpecsAdjacencies[dim];
             }
             
             buffer[i] = index+offset;
@@ -857,14 +885,11 @@ public:
         
         handler->Close();
         
-        
         return SAVIME_SUCCESS;
     }
     
     SavimeResult ComparisonOrderedDim(std::string op, DimSpecPtr dimSpecs, T1 operand2, int64_t totalLength, DatasetPtr& destinyDataset)
     {
-      
-     
         #define MIN(X, Y) (X < Y) ? X : Y 
         map<string, string> invertedOp = {{">", "<="}, {"<", ">="}, {">=", "<"}, {"<=", ">"}};
         

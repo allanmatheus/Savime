@@ -146,6 +146,7 @@
         </df>
         <in>default_storage_manager.cpp</in>
         <in>default_storage_manager.h</in>
+        <in>default_template (Inspiron-7559's conflicted copy 2018-02-11).h</in>
         <in>default_template.h</in>
       </df>
       <df name="test">
@@ -195,7 +196,6 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 4 -s '/dev/shm/savime'</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 1 -s '/dev/shm/savime'</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 2 -s '/dev/shm/savime'</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 1 -s '/dev/shm/savime' -f '/home/hermano/Dropbox/workspace/Savime/boot.txt'</runcommandpicklistitem>
@@ -205,8 +205,9 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 4 -s '/dev/shm/savime' -f '/home/hermano/Dropbox/workspace/Savime/etc/savime.boot'</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"    -b '/home/hermano/Dropbox/workspace/Savime/etc/savime.boot'</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"    -b '/home/hermano/Dropbox/workspace/Savime/etc/savime.boot' -f '/home/hermano/Dropbox/workspace/Savime/etc/savime.config'</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"  -m 4   -b '/home/hermano/Dropbox/workspace/Savime/etc/savime.boot' -f '/home/hermano/Dropbox/workspace/Savime/etc/savime.config'</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"    -b '/home/hermano/Dropbox/workspace/Savime/etc/savime.boot' -f '/home/hermano/Dropbox/workspace/Savime/etc/savime.config'</runcommand>
+        <runcommand>"${OUTPUT_PATH}"  -m 4   -b '/home/hermano/Dropbox/workspace/Savime/etc/savime.boot' -f '/home/hermano/Dropbox/workspace/Savime/etc/savime.config'</runcommand>
         <rundir>.</rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

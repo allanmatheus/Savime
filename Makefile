@@ -191,8 +191,8 @@ CTAGS = ctags
 CSCOPE = cscope
 DIST_SUBDIRS = $(SUBDIRS)
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in COPYING \
-	README ar-lib compile config.guess config.sub install-sh \
-	ltmain.sh missing
+	README ar-lib compile config.guess config.sub depcomp \
+	install-sh ltmain.sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -251,7 +251,7 @@ CPPFLAGS =
 CXX = g++
 CXXCPP = g++ -E
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -DTIME  -rdynamic -m64 -fpic -w -Wall -Wextra -fopenmp -std=gnu++0x
+CXXFLAGS = -g -O3 -DTIME  -rdynamic -m64 -fpic -w -Wall -Wextra -fopenmp -std=gnu++0x
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps

@@ -16617,7 +16617,7 @@ fi
 
 ac_config_headers="$ac_config_headers config.h"
 
-CXXFLAGS='-g -DTIME  -rdynamic -m64 -fpic -w -Wall -Wextra -fopenmp -std=gnu++0x'
+CXXFLAGS='-g -O3 -DTIME  -rdynamic -m64 -fpic -w -Wall -Wextra -fopenmp -std=gnu++0x'
 ac_config_files="$ac_config_files Makefile core/Makefile client/Makefile rdmap/Makefile engine/Makefile"
 
 # Check whether --enable-catalyst was given.

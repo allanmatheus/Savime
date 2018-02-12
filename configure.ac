@@ -6,7 +6,7 @@ LT_INIT
 AC_PROG_CXX
 AC_PROG_CC
 AC_CONFIG_HEADERS([config.h] )
-CXXFLAGS='-g -DTIME  -rdynamic -m64 -fpic -w -Wall -Wextra -fopenmp -std=gnu++0x'
+CXXFLAGS='-g -O3 -DTIME  -rdynamic -m64 -fpic -w -Wall -Wextra -fopenmp -std=gnu++0x'
 AC_CONFIG_FILES([
  Makefile
  core/Makefile

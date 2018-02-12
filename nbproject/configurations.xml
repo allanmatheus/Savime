@@ -82,8 +82,10 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <flagsDictionary>
-        <element flagsID="0" commonFlags="-m64 -fpic -fopenmp -std=gnu++0x"/>
-        <element flagsID="1" commonFlags="-m64 -fpic -fopenmp -std=gnu++0x -fPIC"/>
+        <element flagsID="0"
+                 commonFlags="-m64 -mtune=generic -march=x86-64 -O3 -std=gnu++11 -fopenmp -fPIC -fstack-protector-strong"/>
+        <element flagsID="1"
+                 commonFlags="-m64 -mtune=generic -march=x86-64 -O3 -std=gnu++11 -fpic -fopenmp -fstack-protector-strong"/>
         <element flagsID="2"
                  commonFlags="-m64 -mtune=generic -march=x86-64 -std=gnu++11 -fpic -fopenmp -fstack-protector-strong"/>
       </flagsDictionary>
@@ -102,41 +104,85 @@
         </preBuild>
       </makefileType>
       <item path="client/client.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="configuration/default_config_manager.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="connection/default_connection_manager.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="core/builder.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>configuration</pElem>
+            <pElem>engine</pElem>
+            <pElem>parser</pElem>
+            <pElem>storage</pElem>
+            <pElem>connection</pElem>
+            <pElem>job</pElem>
+            <pElem>query</pElem>
+            <pElem>optimizer</pElem>
+            <pElem>metada</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
+            <pElem>core</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="core/main.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
+            <pElem>core</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="core/metadata.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
+            <pElem>core</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="core/query_data_manager.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
+            <pElem>core</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="core/system_logger.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>core</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="engine/catalyst.cpp" ex="false" tool="1" flavor2="8">
@@ -148,78 +194,45 @@
         </ccTool>
       </item>
       <item path="engine/ddl_operators.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
           <incDir>
+            <pElem>core/include</pElem>
+            <pElem>engine</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
             <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="engine/default_engine.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
           <incDir>
+            <pElem>engine</pElem>
+            <pElem>core/include</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
             <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="engine/dml_operators.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
           <incDir>
+            <pElem>core/include</pElem>
+            <pElem>engine</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
             <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="engine/viz.cpp" ex="false" tool="1" flavor2="8">
@@ -240,264 +253,125 @@
       <folder path="0/client">
         <ccTool>
           <incDir>
+            <pElem>lib</pElem>
             <pElem>client</pElem>
-            <pElem>.</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>TIME</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/configuration">
         <ccTool>
           <incDir>
+            <pElem>core/include</pElem>
+            <pElem>configuration</pElem>
             <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/connection">
         <ccTool>
           <incDir>
+            <pElem>connection</pElem>
+            <pElem>core/include</pElem>
+            <pElem>rdmap</pElem>
             <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/core">
         <ccTool>
           <incDir>
-            <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
+            <pElem>core/include</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/job">
         <ccTool>
           <incDir>
-            <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
+            <pElem>job</pElem>
+            <pElem>core/include</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/lib">
         <ccTool>
           <incDir>
+            <pElem>lib</pElem>
+            <pElem>rdmap</pElem>
             <pElem>client</pElem>
-            <pElem>.</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>PIC</Elem>
-            <Elem>TIME</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/metada">
         <ccTool>
           <incDir>
+            <pElem>core/include</pElem>
+            <pElem>metada</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
             <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/optimizer">
         <ccTool>
           <incDir>
+            <pElem>optimizer</pElem>
+            <pElem>core/include</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
             <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/parser">
         <ccTool>
           <incDir>
-            <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
+            <pElem>parser</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/query">
         <ccTool>
           <incDir>
+            <pElem>query</pElem>
+            <pElem>core/include</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
             <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/rdmap">
         <ccTool>
           <incDir>
+            <pElem>/usr/include/rdma</pElem>
             <pElem>rdmap</pElem>
-            <pElem>.</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>PIC</Elem>
-            <Elem>TIME</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/storage">
         <ccTool>
           <incDir>
+            <pElem>core/include</pElem>
+            <pElem>storage</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/pending</pElem>
+            <pElem>/usr/include/boost/integer</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
             <pElem>core</pElem>
-            <pElem>.</pElem>
-            <pElem>include</pElem>
-            <pElem>../core/include</pElem>
-            <pElem>../core/os/linux/include</pElem>
-            <pElem>../common/include</pElem>
-            <pElem>../common/os/linux/include</pElem>
-            <pElem>../binary/include</pElem>
-            <pElem>../jni/include</pElem>
-            <pElem>../jni/os/linux/include</pElem>
-            <pElem>/include</pElem>
-            <pElem>/include/linux</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>HAVE_CONFIG_H</Elem>
-            <Elem>IGNITE_IMPL</Elem>
-            <Elem>TIME</Elem>
-            <Elem>__STDC_CONSTANT_MACROS</Elem>
-            <Elem>__STDC_LIMIT_MACROS</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/wrapper">
@@ -508,11 +382,28 @@
         </ccTool>
       </folder>
       <item path="job/default_job_manager.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
+            <pElem>core</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="job/default_server_job.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>lib</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
+            <pElem>core</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="lib/savime_lib.cpp" ex="false" tool="1" flavor2="8">
@@ -523,38 +414,62 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="optimizer/default_optimizer.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="parser/bison.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>core</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="parser/default_parser.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>core/include</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
+            <pElem>core</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="parser/flex.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>core</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="parser/schema_builder.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>core/include</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/dynamic_bitset</pElem>
+            <pElem>/usr/include/boost/detail</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/exception</pElem>
+            <pElem>core</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="query/default_query_data_manager.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="rdmap/client.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="rdmap/common.cpp" ex="false" tool="1" flavor2="8">
@@ -566,14 +481,14 @@
         </ccTool>
       </item>
       <item path="rdmap/server.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="storage/default_storage_manager.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="wrapper/wrapper.cpp" ex="false" tool="1" flavor2="8">

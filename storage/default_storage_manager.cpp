@@ -1584,8 +1584,18 @@ SavimeResult DefaultStorageManager::ComparisonDim(std::string op,  DimSpecPtr di
 
 SavimeResult DefaultStorageManager::SubsetDims(vector<DimSpecPtr> dimSpecs, vector<int64_t> lowerBounds, vector<int64_t> upperBounds, DatasetPtr& destinyDataset)
 {
+     #ifdef TIME 
+        GET_T1();
+        #endif
     TemplateStorageManager<double, double, double> tsm (_this, _configurationManager, _systemLogger);
-    return tsm.SubsetDims(dimSpecs, lowerBounds, upperBounds, destinyDataset);
+    auto ret = tsm.SubsetDims(dimSpecs, lowerBounds, upperBounds, destinyDataset);
+    
+    #ifdef TIME 
+        GET_T2();
+        _systemLogger->LogEvent(_moduleName, "SubsetDims took "+std::to_string(GET_DURATION())+" ms.");
+    #endif
+
+    return ret;
 }
 
 SavimeResult DefaultStorageManager::Aritmethic(std::string op, DatasetPtr operand1, DatasetPtr operand2, DatasetPtr& destinyDataset)
