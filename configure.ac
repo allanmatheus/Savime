@@ -1,6 +1,7 @@
 AC_INIT([savime], [1.0], [hermano@lncc.br])
 AC_CONFIG_MACRO_DIRS([m4])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
+AM_SILENT_RULES([yes])
 m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 LT_INIT
 AC_PROG_CXX
@@ -11,7 +12,9 @@ AC_CONFIG_FILES([
  Makefile
  core/Makefile
  client/Makefile
+ mapped_memory/Makefile
  rdmap/Makefile
+ staging/Makefile
  engine/Makefile
 ])
 AC_ARG_ENABLE(catalyst,

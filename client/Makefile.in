@@ -146,7 +146,7 @@ libhello_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 PROGRAMS = $(bin_PROGRAMS)
 am_savimec_OBJECTS = client.$(OBJEXT)
 savimec_OBJECTS = $(am_savimec_OBJECTS)
-savimec_DEPENDENCIES = libhello.la ../rdmap/librdmap.a
+savimec_DEPENDENCIES = libhello.la
 savimec_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(savimec_LDFLAGS) $(LDFLAGS) -o $@
@@ -337,7 +337,7 @@ lib_LTLIBRARIES = libhello.la
 libhello_la_SOURCES = ../lib/savime_lib.cpp
 libhello_la_LDFLAGS = -version-info 1:1:1
 savimec_SOURCES = client.cpp
-savimec_LDADD = libhello.la -lpthread ../rdmap/librdmap.a -lrdmacm -libverbs
+savimec_LDADD = libhello.la -lpthread #../rdmap/librdmap.a -lrdmacm -libverbs
 savimec_LDFLAGS = -static -rpath /usr/local/lib 
 all: all-am
 

@@ -240,8 +240,7 @@ int savime_send(int socket, int file, size_t size)
 
 int savime_write_rdma(SavConn& connection, int fd, size_t size)
 {
-    int rdma_service = std::stoi(connection.rdma_service);
-    return run_rdma_client(connection.rdma_host, rdma_service, fd, size);
+    return -1;
 }
 
 int savime_wait_ack(int socket)

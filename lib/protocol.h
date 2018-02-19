@@ -132,5 +132,30 @@ inline void init_header_block(MessageHeader& x, int c, int q,
     x.block_num = b;
 }
 
+// RDMA stuff
+
+enum {
+    use_rdma = 0,
+    max_writers = 4,
+    max_backlog = 10,
+    max_file_name = 16,
+    max_buffer_len = 1 << 28,
+};
+
+enum RdmaOp {
+    R_SERVER_RECV,
+    R_SERVER_SEND
+};
+
+struct __attribute__ ((__packed__)) request {
+    int query_id;
+    int client_id;
+    RdmaOp op;
+};
+
+struct __attribute__ ((__packed__)) remote_region {
+    uint64_t addr;
+    uint32_t rkey;
+};
 
 #endif

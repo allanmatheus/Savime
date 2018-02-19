@@ -1,0 +1,56 @@
+* [todo] Benchmark Tests
+
+  * [todo] M clients -> N staging
+
+    * [todo] 1t-{2M,128M,1G}-ssh
+
+    * [todo] 4t-{2M,128M,1G}-ssh
+
+  * [wip] M clients -> 1 staging
+
+    * [todo] 1t-{2M,128M,1G}-ssh
+
+    * [wip]  4t-{2M,128M,1G}-ssh
+
+  * [wip] 1 clients -> 1 staging
+
+    * [todo] 1t-{2M,128M,1G}
+
+    * [wip]  4t-{2M,128M,1G}
+
+    * [done] 1t-{2M,128M,1G}-ssh
+
+    * [done] 4t-{2M,128M,1G}-ssh
+
+* [todo] Handle errors from savime
+
+  * [todo] (create_dataset) Let clients check if the dataset was created
+
+  * [todo] (run_savime) Block until the query is finished and return the result
+
+* [todo] Test with a full tmpfs partition
+
+==== old
+
+* [done] Tests for HPC4e report
+
+  * [done] Load sbbd17 paper into report
+
+  * [done] Load data from petrus:/data/savime/ at rdmacluster (at least 20G)
+
+  * [done] Time profile staging 20G of simulation data on SAVIME 30 times
+
+* [done] Proxy savime queries
+
+  * [done] Test with load_savime.sh
+
+  * [done] Send query from stagingcli to staging
+  (staging.cpp: staging::{communicator,server}::run_savime;
+  rdma_utils.cpp: {send,recv}_query;
+  server.cpp: handle_run_savime)
+
+  * [done] Send query from staging to savime
+  (server.cpp: handle_run_savime, savime_runner, execute_query)
+
+* [done] Save to tmpfs or fallback to disk
+(server.cpp: create_file)

@@ -1,11 +1,4 @@
-lib_LTLIBRARIES = librdmap.la
+lib_LIBRARIES = librdmap.a
 
-librdmap_la_SOURCES = client.cpp \
-		      server.cpp \
-		      common.cpp \
-		      messages.cpp
-
-librdmap_la_CXXFLAGS = -g -pthread
-librdmap_la_LDFLAGS = -g -version-info 1:1:1 -pthread
-
-include_HEADERS = rdmap.h
+librdmap_a_SOURCES = rdmap.h rdmap.cpp
+librdmap_a_CXXFLAGS = -g -pthread

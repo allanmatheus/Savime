@@ -1,4 +1,0 @@
-../storage/default_template.o: ../storage/default_template.cpp \
- /usr/include/stdc-predef.h
-
-/usr/include/stdc-predef.h:

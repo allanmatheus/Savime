@@ -161,9 +161,7 @@ am__dirstamp = $(am__leading_dot)dirstamp
 @CATALYST_TRUE@	../engine/savime-dml_operators.$(OBJEXT) \
 @CATALYST_TRUE@	../engine/savime-viz.$(OBJEXT)
 savime_OBJECTS = $(am_savime_OBJECTS)
-@CATALYST_FALSE@savime_DEPENDENCIES = ../rdmap/librdmap.a
-@CATALYST_TRUE@savime_DEPENDENCIES = ../rdmap/librdmap.a \
-@CATALYST_TRUE@	/usr/local/lib/libvtk*
+@CATALYST_TRUE@savime_DEPENDENCIES = /usr/local/lib/libvtk*
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -374,8 +372,8 @@ AM_CPPFLAGS = \
 @CATALYST_TRUE@savime_SOURCES = main.cpp metadata.cpp system_logger.cpp builder.cpp query_data_manager.cpp ../configuration/default_config_manager.cpp ../connection/default_connection_manager.cpp ../engine/default_engine.cpp  ../job/default_job_manager.cpp ../job/default_server_job.cpp ../metada/default_metadata_manager.cpp ../optimizer/default_optimizer.cpp ../parser/default_parser.cpp ../query/default_query_data_manager.cpp ../parser/bison.cpp  ../parser/flex.cpp  ../parser/schema_builder.cpp ../storage/default_storage_manager.cpp ../engine/ddl_operators.cpp ../engine/dml_operators.cpp ../engine/viz.cpp
 @CATALYST_TRUE@savime_CXXFLAGS = -I/usr/local/include/paraview-5.4 -DCATALYST
 @CATALYST_TRUE@savime_LDFLAGS = -Wl,-rpath,/usr/local/lib/paraview-5.4/ -L/usr/local/lib/paraview-5.4/ -I/usr/local/include/paraview-5.4
-@CATALYST_FALSE@savime_LDADD = -lpthread ../rdmap/librdmap.a -lrdmacm -libverbs
-@CATALYST_TRUE@savime_LDADD = -lpthread ../rdmap/librdmap.a -lrdmacm -libverbs /usr/local/lib/libvtk* 
+@CATALYST_FALSE@savime_LDADD = -lpthread #../rdmap/librdmap.a -lrdmacm -libverbs
+@CATALYST_TRUE@savime_LDADD = -lpthread /usr/local/lib/libvtk* #../rdmap/librdmap.a -lrdmacm -libverbs
 all: all-am
 
 .SUFFIXES:

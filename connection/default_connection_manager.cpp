@@ -45,16 +45,7 @@ DefaultConnectionManager::DefaultConnectionManager(ConfigurationManagerPtr confi
 
 SavimeResult DefaultConnectionManager::StartRDMAMasterServer()
 {
-    int id = _configurationManager->GetIntValue(SERVER_ID);
-    int port = _configurationManager->GetIntValue(RDMA_PORT(id));
-    std::string host = _configurationManager->GetStringValue(RDMA_ADDRESS(id));
-    
-    if (run_rdma_server(host.c_str(), port) == -1) 
-    {
-        return SAVIME_FAILURE;
-    }
-    
-    return SAVIME_SUCCESS;
+    return SAVIME_FAILURE;
 }
 
 SavimeResult DefaultConnectionManager::StartUnixMasterSocket(){
